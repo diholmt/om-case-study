@@ -1,0 +1,12 @@
+# Add code here
+version: '3.8'
+
+services:
+  express-app:
+    build:
+      context: ./express-app
+      dockerfile: Dockerfile
+    container_name: express-app
+    ports:
+      - "4567:4567"
+    restart: unless-stopped

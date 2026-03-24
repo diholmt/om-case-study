@@ -1,0 +1,25 @@
+
+
+#variable "files" {
+ # default = 5
+#}
+
+#resource "local_file" "foo" {
+# count    = var.files
+ # content  = "# Some content for file ${count.index}"
+  #filename = "file${count.index}.txt"
+#}
+
+# Old configuration (remove or comment out):
+# resource "local_file" "foo" {
+#   count    = var.files
+#   content  = "# Some content for file ${count.index}"
+#   filename = "file${count.index}.txt"
+# }
+
+# New configuration:
+resource "local_file" "foo" {
+  for_each = var.files_map
+  content  = "# Some content for file ${each.value.index}"
+  filename = "file${each.value.index}.txt"
+}
